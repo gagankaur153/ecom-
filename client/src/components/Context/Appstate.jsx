@@ -17,6 +17,7 @@ const Appstate = (props) => {
     const [inc, setinc] =  useState(null)
     const [remove,setremove] = useState(null)
     const [role, setrole] = useState("user")
+    const [recentlyorder , setrecentlyeorder] = useState([])
    
     
   
@@ -314,7 +315,8 @@ const deletecart = ()=>{
     const userorder = ()=>{
       axios.get("http://localhost:4000/payment/userorder", {withCredentials:true})
       .then((res)=>{
-        console.log(res.data.data[0])
+        setrecentlyeorder(res.data.data[0])
+        console.log("user recently order" ,res.data.data[0])
       })
       .catch((err)=>{
         console.log(err)
@@ -342,7 +344,8 @@ const deletecart = ()=>{
       quantityRemove,
       logout,
       addnewproduct,
-      userorder
+      userorder,
+      recentlyorder 
      }}>{props.children}</Appcontext.Provider>
   
   )
